@@ -1,0 +1,14 @@
+Python virtual environment folder
+
+venv/
+
+Bytecode files
+
+pycache/
+
+Common Python build/distribution files
+
+*.pyc
+*.egg-info/
+/build/
+/dist

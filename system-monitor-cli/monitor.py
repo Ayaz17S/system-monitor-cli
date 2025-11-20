@@ -53,18 +53,18 @@ def display_processes(sort_key='cpu', limit=10):
                 'memory_percent': pinfo['memory_percent']
             })
 
-        # Gracefully handle processes that disappear or deny access
+        
         except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
             continue
 
-    # --- Sorting Logic ---
+    
     if sort_key == 'memory':
         sorted_processes = sorted(
             process_data,
             key=lambda p: p['memory_percent'],
             reverse=True  
         )
-    else: # Default is 'cpu'
+    else: 
         sorted_processes = sorted(
             process_data,
             key=lambda p: p['cpu_percent'],
@@ -74,11 +74,11 @@ def display_processes(sort_key='cpu', limit=10):
     # --- Display Logic ---
     print(f"\n--- TOP {limit} PROCESSES (Sorted by {sort_key.upper()}) ---")
 
-    # Column Headers: Fixed width formatting
+    
     print(f"{'PID':<6} {'CPU%':<6} {'MEM%':<6} {'PROCESS NAME':<40}")
     print("-" * 60)
 
-    # Print the top processes
+    
     for proc in sorted_processes[:limit]:
         print(
             f"{proc['pid']:<6}"
@@ -130,7 +130,7 @@ def main():
             time.sleep(args.interval)
 
         except KeyboardInterrupt:
-            # Handle Ctrl+C press gracefully
+            # Handle Ctrl+C press 
             print("\nMonitor stopped by user.")
             sys.exit(0)
         except Exception as e:
